@@ -1,0 +1,19 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "description": "SE100 Capstone project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ade-nxy/NgXinYingAdeline-Capstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ade-nxy/NgXinYingAdeline-Capstone/issues"
+  },
+  "homepage": "https://github.com/ade-nxy/NgXinYingAdeline-Capstone#readme"
+}
