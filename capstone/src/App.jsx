@@ -1,15 +1,19 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import StockForm from './stockform';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [stocks, setStocks] = useState([]);
+
+  const handleAddStock = (stock) => {
+    setStocks((prevStocks) => [...prevStocks, stock]);
+  }
 
   return (
     <>
       <div>
         <h1>Finance Dashboard</h1>
+        <StockForm stockPurchase = {handleAddStock} />
 
         <h2>Stock List</h2>
         <p>No stocks added yet</p>
