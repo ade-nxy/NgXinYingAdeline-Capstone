@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-function StockForm ({stockPurchase}) {
+function StockForm ({ onAddStock }) {
 
     const [symbol, setSymbol] = useState('');
     const [quantity, setQuantity] = useState('');
-    const [price, setPrice] = useState('');
+    const [purchaseprice, setPurchasePrice] = useState('');
 
-    //Move the stock creation and state updates into the handleSubmit function, so they only run when the form is submitted:
     const handleSubmit = (e) => {
       e.preventDefault();
     
-      const newStock = {
+      onAddStock ({
         symbol: symbol.toUpperCase(),
         quantity: parseInt(quantity),
-        price: parseFloat(price),
-      };
+        purchaseprice: parseFloat(purchaseprice),
+      });
       
-      stockPurchase(newStock);
       setSymbol('');
       setQuantity('');
-      setPrice('');
-    }
+      setPurchasePrice('');
+    };
   
     return (
       <form onSubmit={handleSubmit}>
@@ -48,8 +46,8 @@ function StockForm ({stockPurchase}) {
           <input
             placeholder= "Purchase Price ($)"
             type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            value={purchaseprice}
+            onChange={(e) => setPurchasePrice(e.target.value)}
             step="0.01"
             required
           />

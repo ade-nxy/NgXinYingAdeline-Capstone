@@ -1,26 +1,24 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import StockForm from './stockform.jsx';
+import StockList from './stocklist.jsx';
 import './App.css';
-import StockForm from './stockform';
 
 function App() {
   const [stocks, setStocks] = useState([]);
 
-  const handleAddStock = (stock) => {
-    setStocks((prevStocks) => [...prevStocks, stock]);
-  }
+  const addStock = (newStock) => {
+    setStocks((prev) => [...prev, newStock]);
+  };
 
   return (
-    <>
-      <div>
-        <h1>Finance Dashboard</h1>
-        <StockForm stockPurchase = {handleAddStock} />
-
-        <h2>Stock List</h2>
-        <p>No stocks added yet</p>
-      </div>
-
-    </>
-  )
+    <div className="App">
+      <h1>Finance Dashboard</h1>
+      <StockForm onAddStock={addStock} />
+      
+      <h2>Stock List</h2>
+      <StockList stocks={stocks} />
+    </div>
+  );
 }
 
-export default App
+export default App;

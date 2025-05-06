@@ -18,6 +18,55 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+form {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 5px;
+}
+
+input {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+input:focus {
+  border-color: #6b275a;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse
+}
+
+button {
+  border-radius: 5px;
+  border: 1px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #6b275a;
+  cursor: pointer;
+  gap: 20px
+}
+button:hover {
+  background-color: pink;
+  border-color: #6b275a;
+  color: black;
+  box-shadow: 0 0 10px white;
+
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
