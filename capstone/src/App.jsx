@@ -1,22 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import StockForm from './stockform.jsx';
+import StockList from './stocklist.jsx';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [stocks, setStocks] = useState([]);
+
+  const addStock = (newStock) => {
+    setStocks((prev) => [...prev, newStock]);
+  };
 
   return (
-    <>
-      <div>
-        <h1>Finance Dashboard</h1>
-
-        <h2>Stock List</h2>
-        <p>No stocks added yet</p>
-      </div>
-
-    </>
-  )
+    <div className="App">
+      <h1>Finance Dashboard</h1>
+      <StockForm onAddStock={addStock} />
+      
+      <h2>Stock List</h2>
+      <StockList stocks={stocks} />
+    </div>
+  );
 }
 
-export default App
+export default App;
