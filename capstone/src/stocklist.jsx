@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 const StockList = ({ stocks }) => {
   const [prices, setPrices] = useState({});
   const [loading, setLoading] = useState(false);
+  const [latestError, setLatestError] = useState(null);
 
   useEffect(() => {
     if (stocks.length === 0) return;
@@ -10,20 +11,28 @@ const StockList = ({ stocks }) => {
     const fetchPrices = async () => {
       setLoading(true);
       const updated = {};
+      let inputerror = null;
 
       for (const stock of stocks) {
         try {
           const res = await fetch(
-            `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock.symbol}&apikey=$8VAJF500BVS4PR11`
+            //`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo`
+            `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stock.symbol}&apikey=ISQWZPK4IU59D3F8`
           );
           const data = await res.json();
           const price = parseFloat(data['Global Quote']?.['05. price']);
           if (!isNaN(price)) {
             updated[stock.symbol] = price;
+          } else {
+            inputerror = stock.symbol;
           }
         } catch (err) {
-          console.error('Error fetching price:', err);
+          inputerror = stock.symbol;
         }
+      }
+      
+      if (inputerror){
+        alert(`This stock symbol does not exist: ${inputerror}`);
       }
 
       setPrices(updated);
@@ -49,6 +58,11 @@ const StockList = ({ stocks }) => {
       <tbody>
         {stocks.map((stock) => {
           const current = prices[stock.symbol];
+
+          if (current === undefined) {
+            return null;
+          }
+
           const profit =
             typeof current === 'number' && !isNaN(current)
                 ? ((current - stock.purchaseprice) * stock.quantity).toFixed(2)
